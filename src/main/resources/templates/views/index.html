@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>CRUD File Upload</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!--	&lt;!&ndash; Boostrap 4 CSS &ndash;&gt;-->
+<!--	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+<!--	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>-->
+
+<!--	&lt;!&ndash;bootstrap 4 js file&ndash;&gt;-->
+<!--	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+
+</head>
+<body>
+<div align="center" class="container my-2">
+
+	<h3>Student List</h3>
+	<a class="btn btn-primary btn-sm mb-3" th:href="@{/addStudent}">Add Student</a>
+	<br><br>
+	<table border="2" class="table table-striped table-responsive-md" style="width:80%">
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Contact</th>
+			<th>Address</th>
+			<th>Photos</th>
+			<th>Action</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="row:${students}">
+			<td th:text="${row.id}"></td>
+			<td th:text="${row.name}"></td>
+			<td th:text="${row.contact}"></td>
+			<td th:text="${row.address}"></td>
+			<th scope="row">
+				<img alt="No pic" th:src="${row.photosImagePath}" style="width: 100px;height: 100px;">
+			</th>
+
+			<td>
+				<a class="btn btn-success mt-4" th:href="@{'/editStudent/' + ${row.id}}">Update</a>
+				<a class="btn btn-danger mt-4" th:href="@{'/deleteStudent/' + ${row.id}}">Delete</a>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
